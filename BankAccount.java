@@ -1,6 +1,6 @@
 /*
  * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
+ * To change this template transActionsFile, choose Tools | Templates
  * and open the template in the editor.
  */
 package bankregister;
@@ -9,9 +9,8 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
-
-
 /**
  *
  * @author Eduardo Estrada
@@ -25,7 +24,10 @@ public class BankAccount {
     private String transActionDate;
     private String category;
     private final ArrayList<String> transactions = new ArrayList<String>();
+    DecimalFormat df = new DecimalFormat("#####.##");
 
+  
+    
     public BankAccount(String name, String actype, float bal) {
         this.name = name;
         this.actype = actype;
@@ -44,18 +46,15 @@ public class BankAccount {
         balance = balance + amount;
         System.out.println("new bal = " + balance);
         
-        transactions.add("Date: " + transActionDate + " Category: " + category + " Amount: $" + amount + " Balance: $" + balance + "\n");
+        transactions.add("Date: " + transActionDate + " Category: " + category 
+                + " Amount: $" + df.format(amount) + " Balance: $" + df.format(balance) + "\n");
         return true;
     }
 
     public boolean withdraw(float amt, String transDate, String transCategory) {
-
         this.amount = amt;
         this.transActionDate = transDate;
         this.category = transCategory;
-        
-        
-        
         if (balance < amount) {
             System.out.println("Not sufficient balance.");
             return false;
@@ -68,7 +67,8 @@ public class BankAccount {
         balance = balance - amount;
         System.out.println("new bal = " + balance);
 
-        transactions.add("Date: " + transActionDate + " Category: " + category + " Amount: -$" + amount + " Balance: $" + balance + "\n");
+        transactions.add("Date: " + transActionDate + " Category: " + category 
+                + " Amount: -$" + df.format(amount) + " Balance: $" + df.format(balance) + "\n");
         return true;
     }
 
@@ -83,22 +83,30 @@ public class BankAccount {
     }
 
     public void recordTransActions() throws IOException {
-
-        File file = new File("TransActions.txt");
-        if (!file.exists()) {
-            file.createNewFile();
+        
+        // will overwrite the account info with new balance
+        FileWriter accountInfoWriter = new FileWriter("accountInfo.txt");
+        accountInfoWriter.write(name + ","+actype + "," + df.format(balance));
+        accountInfoWriter.close();
+        
+        
+        
+        
+        File transActionsFile = new File("TransActions.txt");
+        if (!transActionsFile.exists()) {
+            transActionsFile.createNewFile();
         }
 
-        FileWriter fw = new FileWriter(file.getAbsoluteFile(),true);
-        BufferedWriter bw = new BufferedWriter(fw);
+        FileWriter transActionFileWriter = new FileWriter(transActionsFile.getAbsoluteFile(),true);
+        BufferedWriter transActionBufferedWriter = new BufferedWriter(transActionFileWriter);
         for (String transAction : transactions) {
-            bw.write(transAction);
+            transActionBufferedWriter.write(transAction);
         }
         
-        // note:  I need to overwrite the original file with the new balance
+     
        
 
-        bw.close();
+        transActionBufferedWriter.close();
 
     }// end recordTransActions()
 
