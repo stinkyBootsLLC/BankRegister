@@ -19,6 +19,8 @@ public class BankAccount {
 
     private final String name;
     private final String actype;
+    private String payee;
+    private String checkNum;
     private float  amount;
     private float balance;
     private String transActionDate;
@@ -34,7 +36,9 @@ public class BankAccount {
         this.balance = bal;
     }// end constructor
 
-    public boolean deposit(float amt, String transDate, String transCategory) {
+    public boolean deposit(float amt, String transDate, String transCategory, String transPayee, String transCheckNum) {
+        this.checkNum = transCheckNum;
+        this.payee = transPayee;
         this.amount = amt;
         this.transActionDate = transDate;
         this.category = transCategory;
@@ -45,13 +49,16 @@ public class BankAccount {
         }
         balance = balance + amount;
         System.out.println("new bal = " + balance);
-        
-        transactions.add("Date: " + transActionDate + " Category: " + category 
-                + " Amount: $" + df.format(amount) + " Balance: $" + df.format(balance) + "\n");
+        // NO	5/12/20	1516	Lucio Lopez	Home:Lawn & Garden	$50.00		$11,087.14
+
+        transactions.add("NO," + transActionDate + "," + payee +","+ category 
+                + ",   ," + df.format(amount) + "," + df.format(balance) + "\n");
         return true;
     }
 
-    public boolean withdraw(float amt, String transDate, String transCategory) {
+    public boolean withdraw(float amt, String transDate, String transCategory, String transPayee,String transCheckNum) {
+        this.checkNum = transCheckNum;
+        this.payee = transPayee;
         this.amount = amt;
         this.transActionDate = transDate;
         this.category = transCategory;
@@ -67,8 +74,8 @@ public class BankAccount {
         balance = balance - amount;
         System.out.println("new bal = " + balance);
 
-        transactions.add("Date: " + transActionDate + " Category: " + category 
-                + " Amount: -$" + df.format(amount) + " Balance: $" + df.format(balance) + "\n");
+        transactions.add("NO," + transActionDate + "," + payee +","+ category 
+                + "," + df.format(amount) + ",   ," + df.format(balance) + "\n");
         return true;
     }
 

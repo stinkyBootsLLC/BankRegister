@@ -91,6 +91,10 @@ public class TransActionForm extends javax.swing.JFrame {
         balanceResultTxtFld = new javax.swing.JTextField();
         acctNameLbl = new javax.swing.JLabel();
         acctNameValueLbl = new javax.swing.JLabel();
+        payeeLbl = new javax.swing.JLabel();
+        payeeTxtFld = new javax.swing.JTextField();
+        checkNumLbl = new javax.swing.JLabel();
+        checkNumTxtFld = new javax.swing.JTextField();
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -147,6 +151,19 @@ public class TransActionForm extends javax.swing.JFrame {
 
         acctNameValueLbl.setText("acct name");
 
+        payeeLbl.setText("Payee:");
+
+        payeeTxtFld.setText(" ");
+        payeeTxtFld.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                payeeTxtFldActionPerformed(evt);
+            }
+        });
+
+        checkNumLbl.setText("Check #:");
+
+        checkNumTxtFld.setText(" ");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -158,9 +175,10 @@ public class TransActionForm extends javax.swing.JFrame {
                 .addComponent(cancelBtn)
                 .addGap(76, 76, 76))
             .addGroup(layout.createSequentialGroup()
-                .addGap(74, 74, 74)
+                .addGap(68, 68, 68)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
                         .addComponent(acctNameLbl)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(acctNameValueLbl)
@@ -173,19 +191,30 @@ public class TransActionForm extends javax.swing.JFrame {
                                 .addComponent(depRdoBtn))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(amntLbl, javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(dateLbl)
-                                        .addComponent(balanceLbl, javax.swing.GroupLayout.Alignment.TRAILING))
-                                    .addComponent(categoryLbl))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(16, 16, 16)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(amntLbl, javax.swing.GroupLayout.Alignment.TRAILING)
+                                                .addComponent(dateLbl)
+                                                .addComponent(balanceLbl, javax.swing.GroupLayout.Alignment.TRAILING))
+                                            .addComponent(categoryLbl)
+                                            .addComponent(payeeLbl)))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(checkNumLbl)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                                     .addComponent(balanceResultTxtFld)
                                     .addComponent(amtTxtFld)
                                     .addComponent(catTxtFld)
-                                    .addComponent(dateTxtFld)))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                                            .addComponent(payeeTxtFld, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(checkNumTxtFld, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(dateTxtFld, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(0, 0, Short.MAX_VALUE))))
                             .addComponent(titleLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(60, Short.MAX_VALUE))))
+                        .addGap(126, 126, 126))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -200,7 +229,15 @@ public class TransActionForm extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(acctNameLbl)
                     .addComponent(acctNameValueLbl))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(checkNumTxtFld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(checkNumLbl))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(payeeTxtFld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(payeeLbl))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(dateTxtFld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(dateLbl))
@@ -232,24 +269,19 @@ public class TransActionForm extends javax.swing.JFrame {
     
     
     private void addTransBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addTransBtnActionPerformed
-     
-            // get the values from the fields
-//            amtTxtFld
-//            catTxtFld
-//            dateTxtFld
-            // this cant go here !!
-           // readFile();
 
             bankAccount.displayInfo();
             float depAmt = Float.parseFloat(amtTxtFld.getText());
 
             if (withDrwRdoBtn.isSelected()) {
                 
-                  if (bankAccount.withdraw(depAmt, dateTxtFld.getText(), catTxtFld.getText())) {
+                if (bankAccount.withdraw(depAmt, dateTxtFld.getText(), catTxtFld.getText(),payeeTxtFld.getText(),checkNumTxtFld.getText() )) {
                     // clear fields
                     amtTxtFld.setText("");
                     catTxtFld.setText("");
                     dateTxtFld.setText("");
+                    payeeTxtFld.setText("");
+                    checkNumTxtFld.setText("");
                     balanceResultTxtFld.setText(Float.toString(bankAccount.getBalance()));
                 } else {
                     // display an error
@@ -260,26 +292,29 @@ public class TransActionForm extends javax.swing.JFrame {
 
             } else if (depRdoBtn.isSelected()) {
 
-                if (bankAccount.deposit(depAmt, dateTxtFld.getText(), catTxtFld.getText())) {
+                if (bankAccount.deposit(depAmt, dateTxtFld.getText(), catTxtFld.getText(), payeeTxtFld.getText(),checkNumTxtFld.getText() )) {
                     // clear the fields
                     amtTxtFld.setText("");
                     catTxtFld.setText("");
                     dateTxtFld.setText("");
+                    payeeTxtFld.setText("");
+                    checkNumTxtFld.setText("");
                     balanceResultTxtFld.setText(Float.toString(bankAccount.getBalance()));
                 } else {
                     // display an error
                     System.out.println("deposit error");
-                }
+                } // end if successful deposit
                 
                 
                 
                 
 
-            }
+            }// end if either radio button selected
        
     }//GEN-LAST:event_addTransBtnActionPerformed
 
     private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
+        // cancel button needs to close out this form
         System.out.println("cancel button pressed");
 
     }//GEN-LAST:event_cancelBtnActionPerformed
@@ -292,6 +327,10 @@ public class TransActionForm extends javax.swing.JFrame {
         }
         System.out.println("window closing");
     }//GEN-LAST:event_formWindowClosing
+
+    private void payeeTxtFldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_payeeTxtFldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_payeeTxtFldActionPerformed
 
     /**
      *
@@ -339,11 +378,15 @@ public class TransActionForm extends javax.swing.JFrame {
     private javax.swing.JButton cancelBtn;
     private javax.swing.JTextField catTxtFld;
     private javax.swing.JLabel categoryLbl;
+    private javax.swing.JLabel checkNumLbl;
+    private javax.swing.JTextField checkNumTxtFld;
     private javax.swing.JLabel dateLbl;
     private javax.swing.JTextField dateTxtFld;
     private javax.swing.JRadioButton depRdoBtn;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JLabel payeeLbl;
+    private javax.swing.JTextField payeeTxtFld;
     private javax.swing.JLabel titleLbl;
     private javax.swing.ButtonGroup transTypeBtnGroup;
     private javax.swing.JRadioButton withDrwRdoBtn;
