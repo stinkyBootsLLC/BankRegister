@@ -45,43 +45,49 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="addTransBtn" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="cancelBtn" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="76" max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Component id="acctNameLbl" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="acctNameValueLbl" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="withDrwRdoBtn" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="depRdoBtn" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Group type="103" groupAlignment="1" attributes="0">
-                                      <Component id="amntLbl" min="-2" max="-2" attributes="0"/>
-                                      <Group type="102" alignment="1" attributes="0">
-                                          <Component id="dateLbl" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                                      </Group>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="amntLbl" alignment="1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="dateLbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="balanceLbl" alignment="1" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="catTxtFld" max="32767" attributes="0"/>
-                                      <Component id="dateTxtFld" min="-2" pref="156" max="-2" attributes="0"/>
-                                      <Component id="amtTxtFld" min="-2" pref="156" max="-2" attributes="0"/>
-                                  </Group>
+                                  <Component id="categoryLbl" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="categoryLbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="2" attributes="0">
+                                  <Component id="balanceResultTxtFld" alignment="2" max="32767" attributes="0"/>
+                                  <Component id="amtTxtFld" alignment="2" max="32767" attributes="0"/>
+                                  <Component id="catTxtFld" alignment="2" max="32767" attributes="0"/>
+                                  <Component id="dateTxtFld" alignment="2" max="32767" attributes="0"/>
+                              </Group>
                           </Group>
                           <Component id="titleLbl" min="-2" pref="317" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="22" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <Component id="addTransBtn" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="cancelBtn" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
+                      <EmptySpace pref="60" max="32767" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -99,6 +105,11 @@
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="acctNameLbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="acctNameValueLbl" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="23" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="dateTxtFld" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="dateLbl" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
@@ -112,12 +123,17 @@
                   <Component id="amtTxtFld" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="amntLbl" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="balanceResultTxtFld" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="balanceLbl" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="addTransBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="cancelBtn" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="19" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -150,17 +166,11 @@
       <Properties>
         <Property name="text" type="java.lang.String" value=" "/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="dateTxtFldActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="catTxtFld">
       <Properties>
         <Property name="text" type="java.lang.String" value=" "/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="catTxtFldActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="amtTxtFld">
       <Properties>
@@ -174,9 +184,6 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Withdraw"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="withDrwRdoBtnActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JRadioButton" name="depRdoBtn">
       <Properties>
@@ -188,7 +195,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="addTransBtn">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Add"/>
+        <Property name="text" type="java.lang.String" value="Enter"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addTransBtnActionPerformed"/>
@@ -201,6 +208,27 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cancelBtnActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="balanceLbl">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Balance: $"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="balanceResultTxtFld">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+        <Property name="text" type="java.lang.String" value=" "/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="acctNameLbl">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Account Name:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="acctNameValueLbl">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="acct name"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>
