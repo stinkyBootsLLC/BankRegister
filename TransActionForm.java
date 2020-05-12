@@ -9,7 +9,10 @@ package bankregister;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -80,7 +83,6 @@ public class TransActionForm extends javax.swing.JFrame {
         dateLbl = new javax.swing.JLabel();
         categoryLbl = new javax.swing.JLabel();
         amntLbl = new javax.swing.JLabel();
-        dateTxtFld = new javax.swing.JTextField();
         catTxtFld = new javax.swing.JTextField();
         amtTxtFld = new javax.swing.JTextField();
         withDrwRdoBtn = new javax.swing.JRadioButton();
@@ -95,6 +97,7 @@ public class TransActionForm extends javax.swing.JFrame {
         payeeTxtFld = new javax.swing.JTextField();
         checkNumLbl = new javax.swing.JLabel();
         checkNumTxtFld = new javax.swing.JTextField();
+        datePicker = new org.jdesktop.swingx.JXDatePicker();
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -115,8 +118,6 @@ public class TransActionForm extends javax.swing.JFrame {
         categoryLbl.setText("Category:");
 
         amntLbl.setText("Amount: $");
-
-        dateTxtFld.setText(" ");
 
         catTxtFld.setText(" ");
 
@@ -177,44 +178,48 @@ public class TransActionForm extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(68, 68, 68)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(acctNameLbl)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(acctNameValueLbl)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(withDrwRdoBtn)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(depRdoBtn))
-                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(depRdoBtn)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(16, 16, 16)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                 .addComponent(amntLbl, javax.swing.GroupLayout.Alignment.TRAILING)
-                                                .addComponent(dateLbl)
                                                 .addComponent(balanceLbl, javax.swing.GroupLayout.Alignment.TRAILING))
                                             .addComponent(categoryLbl)
                                             .addComponent(payeeLbl)))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(checkNumLbl)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(dateLbl)
+                                            .addComponent(checkNumLbl))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                                    .addComponent(balanceResultTxtFld)
-                                    .addComponent(amtTxtFld)
-                                    .addComponent(catTxtFld)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                                            .addComponent(payeeTxtFld, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(checkNumTxtFld, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(dateTxtFld, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(0, 0, Short.MAX_VALUE))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(balanceResultTxtFld, javax.swing.GroupLayout.Alignment.CENTER)
+                                    .addComponent(amtTxtFld, javax.swing.GroupLayout.Alignment.CENTER)
+                                    .addComponent(catTxtFld, javax.swing.GroupLayout.Alignment.CENTER)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(payeeTxtFld, javax.swing.GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE)
+                                            .addComponent(checkNumTxtFld, javax.swing.GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE)
+                                            .addComponent(datePicker, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addGap(0, 0, Short.MAX_VALUE)))))
+                        .addGap(44, 44, 44))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(acctNameLbl)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(acctNameValueLbl))
                             .addComponent(titleLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(126, 126, 126))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -229,18 +234,18 @@ public class TransActionForm extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(acctNameLbl)
                     .addComponent(acctNameValueLbl))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(dateLbl)
+                    .addComponent(datePicker, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(checkNumTxtFld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(checkNumLbl))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(payeeTxtFld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(payeeLbl))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(dateTxtFld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(dateLbl))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(categoryLbl)
@@ -263,54 +268,56 @@ public class TransActionForm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
-    
 
-    
-    
     private void addTransBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addTransBtnActionPerformed
+        
+        String datePattern = "dd/MM/yyyy";
+        DateFormat dateFormat = new SimpleDateFormat(datePattern);
+        Date selectedDate = datePicker.getDate();
+        String transDate = dateFormat.format(selectedDate);
+        
+        bankAccount.displayInfo();
 
-            bankAccount.displayInfo();
-            float depAmt = Float.parseFloat(amtTxtFld.getText());
+        float depAmt = Float.parseFloat(amtTxtFld.getText());
 
-            if (withDrwRdoBtn.isSelected()) {
-                
-                if (bankAccount.withdraw(depAmt, dateTxtFld.getText(), catTxtFld.getText(),payeeTxtFld.getText(),checkNumTxtFld.getText() )) {
-                    // clear fields
-                    amtTxtFld.setText("");
-                    catTxtFld.setText("");
-                    dateTxtFld.setText("");
-                    payeeTxtFld.setText("");
-                    checkNumTxtFld.setText("");
-                    balanceResultTxtFld.setText(Float.toString(bankAccount.getBalance()));
-                } else {
-                    // display an error
-                    System.out.println("withdrawal error");
-                }
+        System.out.println(datePicker.getDate());
 
-                System.out.println("add button pressed - withdrawal radio button is selected");
+        
 
-            } else if (depRdoBtn.isSelected()) {
+        if (withDrwRdoBtn.isSelected()) {
 
-                if (bankAccount.deposit(depAmt, dateTxtFld.getText(), catTxtFld.getText(), payeeTxtFld.getText(),checkNumTxtFld.getText() )) {
-                    // clear the fields
-                    amtTxtFld.setText("");
-                    catTxtFld.setText("");
-                    dateTxtFld.setText("");
-                    payeeTxtFld.setText("");
-                    checkNumTxtFld.setText("");
-                    balanceResultTxtFld.setText(Float.toString(bankAccount.getBalance()));
-                } else {
-                    // display an error
-                    System.out.println("deposit error");
-                } // end if successful deposit
-                
-                
-                
-                
+            if (bankAccount.withdraw(depAmt, transDate, catTxtFld.getText(), payeeTxtFld.getText(), checkNumTxtFld.getText())) {
+                // clear fields
+                amtTxtFld.setText("");
+                catTxtFld.setText("");
+                // dateTxtFld.setText("");
+                payeeTxtFld.setText("");
+                checkNumTxtFld.setText("");
+                balanceResultTxtFld.setText(Float.toString(bankAccount.getBalance()));
+            } else {
+                // display an error
+                System.out.println("withdrawal error");
+            }
 
-            }// end if either radio button selected
-       
+            System.out.println("add button pressed - withdrawal radio button is selected");
+
+        } else if (depRdoBtn.isSelected()) {
+
+            if (bankAccount.deposit(depAmt, transDate, catTxtFld.getText(), payeeTxtFld.getText(), checkNumTxtFld.getText())) {
+                // clear the fields
+                amtTxtFld.setText("");
+                catTxtFld.setText("");
+                // dateTxtFld.setText("");
+                payeeTxtFld.setText("");
+                checkNumTxtFld.setText("");
+                balanceResultTxtFld.setText(Float.toString(bankAccount.getBalance()));
+            } else {
+                // display an error
+                System.out.println("deposit error");
+            } // end if successful deposit
+
+        }// end if either radio button selected
+
     }//GEN-LAST:event_addTransBtnActionPerformed
 
     private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
@@ -358,7 +365,7 @@ public class TransActionForm extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(TransActionForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-       
+
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -381,7 +388,7 @@ public class TransActionForm extends javax.swing.JFrame {
     private javax.swing.JLabel checkNumLbl;
     private javax.swing.JTextField checkNumTxtFld;
     private javax.swing.JLabel dateLbl;
-    private javax.swing.JTextField dateTxtFld;
+    private org.jdesktop.swingx.JXDatePicker datePicker;
     private javax.swing.JRadioButton depRdoBtn;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
