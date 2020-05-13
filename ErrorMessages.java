@@ -37,10 +37,18 @@ public class ErrorMessages {
     public void displayBlankFieldError(String fieldName){
                 //custom title, warning icon
         JOptionPane.showMessageDialog(null, fieldName +
-                " Field cannot be blank Error!",
+                " Field cannot be blank!",
                 "Applcation warning",
                 JOptionPane.WARNING_MESSAGE);
         
     }// end displayBlankFieldError
+    
+    public void displaySelectTransActionType(){
+                JOptionPane.showMessageDialog(null,
+                "Select withdrawal or deposit!",
+                "Applcation warning",
+                JOptionPane.WARNING_MESSAGE);
+        
+    }
 
 }// end class ErrorMessages

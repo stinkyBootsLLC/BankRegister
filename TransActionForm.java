@@ -16,7 +16,7 @@ import java.util.Date;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
+//import javax.swing.JOptionPane;
 //import javax.swing.WindowConstants;
 
 /**
@@ -43,21 +43,19 @@ public class TransActionForm extends javax.swing.JFrame {
     public void readFile() throws FileNotFoundException {
 
         File accountFile = new File("accountInfo.txt");
-        Scanner fileScanner = new Scanner(accountFile);
-
-        String accountline;
-        String[] split_data = null;
-
-        // loop thru the file
-        while (fileScanner.hasNextLine()) {
-            accountline = fileScanner.nextLine();
-            split_data = accountline.split(",");
-
-        }// end while
-        // debug
-        System.out.println(Arrays.toString(split_data));
-        // CLOSE STREAM
-        fileScanner.close();
+        String[] split_data;
+        try (Scanner fileScanner = new Scanner(accountFile)) {
+            String accountline;
+            split_data = null;
+            // loop thru the file
+            while (fileScanner.hasNextLine()) {
+                accountline = fileScanner.nextLine();
+                split_data = accountline.split(",");
+                
+            }// end while
+            // debug
+            System.out.println(Arrays.toString(split_data));
+        }
         String accountOwner = split_data[0].trim();
         String accountType = split_data[1].trim();
         float accountBala = Float.parseFloat(split_data[2].trim());
@@ -270,11 +268,6 @@ public class TransActionForm extends javax.swing.JFrame {
         getContentPane().add(payeeLbl, gridBagConstraints);
 
         payeeTxtFld.setText(" ");
-        payeeTxtFld.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                payeeTxtFldActionPerformed(evt);
-            }
-        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 7;
@@ -322,15 +315,8 @@ public class TransActionForm extends javax.swing.JFrame {
 
         String datePattern = "dd/MM/yyyy";
         DateFormat dateFormat = new SimpleDateFormat(datePattern);
-        
-        
-
         float transAmount;
-
-        bankAccount.displayInfo();
-
-        System.out.println(datePicker.getDate());
-
+        
         try {
             Date selectedDate = datePicker.getDate();
             String transDate = dateFormat.format(selectedDate);
@@ -345,10 +331,9 @@ public class TransActionForm extends javax.swing.JFrame {
                     // dateTxtFld.setText("");
                     payeeTxtFld.setText("");
                     checkNumTxtFld.setText("");
-                    balanceResultTxtFld.setText(Float.toString(bankAccount.getBalance()));
+                    balanceResultTxtFld.setText("$" + bankAccount.getBalanceAsString() );
                 } else {
                     // display an error
-
                     System.out.println("withdrawal error");
                 }
 
@@ -363,13 +348,16 @@ public class TransActionForm extends javax.swing.JFrame {
                     // dateTxtFld.setText("");
                     payeeTxtFld.setText("");
                     checkNumTxtFld.setText("");
-                    balanceResultTxtFld.setText(Float.toString(bankAccount.getBalance()));
+                    balanceResultTxtFld.setText("$" + bankAccount.getBalanceAsString() );
                 } else {
                     // display an error
                     System.out.println("deposit error");
                 } // end if successful deposit
-
+                
+            } else {
+                error.displaySelectTransActionType();
             }// end if either radio button selected
+            
         } catch (NumberFormatException numberFormatException) {
             
             error.displayBlankFieldError("Amount");
@@ -383,6 +371,13 @@ public class TransActionForm extends javax.swing.JFrame {
 
     private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
         // cancel button needs to close out this form
+        // System.exit(0);
+        try {
+            bankAccount.recordTransActions();
+        } catch (IOException ex) {
+            Logger.getLogger(TransActionForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        dispose();
         System.out.println("cancel button pressed");
 
     }//GEN-LAST:event_cancelBtnActionPerformed
@@ -391,14 +386,10 @@ public class TransActionForm extends javax.swing.JFrame {
         try {
             bankAccount.recordTransActions();
         } catch (IOException ex) {
-            Logger.getLogger(TransActionForm.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex.getMessage());
         }
         System.out.println("window closing");
     }//GEN-LAST:event_formWindowClosing
-
-    private void payeeTxtFldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_payeeTxtFldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_payeeTxtFldActionPerformed
 
     /**
      *
