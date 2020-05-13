@@ -27,6 +27,7 @@ public class BankAccount {
     private String category;
     private final ArrayList<String> transactions = new ArrayList<String>();
     DecimalFormat df = new DecimalFormat("#####.##");
+    private ErrorMessages error = new ErrorMessages();
 
   
     
@@ -44,6 +45,7 @@ public class BankAccount {
         this.category = transCategory;
         
         if (amount < 0) {
+            error.displayAmountError();
             System.out.println("Invalid Amount");
             return false;
         }
@@ -63,10 +65,12 @@ public class BankAccount {
         this.transActionDate = transDate;
         this.category = transCategory;
         if (balance < amount) {
+            error.displayInsufficientFunds();
             System.out.println("Not sufficient balance.");
             return false;
         }
         if (amount < 0) {
+            error.displayAmountError();
             System.out.println("Invalid Amount");
             return false;
         }
