@@ -5,27 +5,15 @@
  */
 package bankregister;
 
-import java.util.*;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
-
 /**
- *
+ * Application entry point.
  * @author Eduardo Estrada
  */
 public class BankRegister {
-
-    
-
     /**
      * @param args the command line arguments
-     * @throws java.io.FileNotFoundException
      */
-    public static void main(String[] args) throws FileNotFoundException {
-        TransActionForm.displayForm();
-       
-      
+    public static void main(String[] args){
+        MainDisplay.mainDisplay();
     }// end main
-
 }// end class BankRegister

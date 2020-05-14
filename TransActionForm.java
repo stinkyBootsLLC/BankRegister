@@ -14,10 +14,6 @@ import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-//import javax.swing.JOptionPane;
-//import javax.swing.WindowConstants;
 
 /**
  *
@@ -36,11 +32,11 @@ public class TransActionForm extends javax.swing.JFrame {
         try {
             readFile();
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(TransActionForm.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex.getMessage());
         }
     }// end constructor
 
-    public void readFile() throws FileNotFoundException {
+    private void readFile() throws FileNotFoundException {
 
         File accountFile = new File("accountInfo.txt");
         String[] split_data;
@@ -207,7 +203,7 @@ public class TransActionForm extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(18, 49, 26, 0);
         getContentPane().add(addTransBtn, gridBagConstraints);
 
-        cancelBtn.setText("Cancel");
+        cancelBtn.setText("Exit");
         cancelBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cancelBtnActionPerformed(evt);
@@ -375,7 +371,7 @@ public class TransActionForm extends javax.swing.JFrame {
         try {
             bankAccount.recordTransActions();
         } catch (IOException ex) {
-            Logger.getLogger(TransActionForm.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex.getMessage());
         }
         dispose();
         System.out.println("cancel button pressed");
