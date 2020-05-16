@@ -1,0 +1,50 @@
+
+Auto & Transport
+Auto & Transport: Fuel
+Auto & Transport:Auto Insurance
+Auto & Transport:Parking
+Auto & Transport:Registration
+Auto & Transport:Service & Parts
+Bills & Utilities:Cable TV and Internet
+Bills & Utilities:Electric Bill
+Bills & Utilities:Gas Bill
+Bills & Utilities:Mobile Phone
+Bills & Utilities:Utilities
+Business Expenses:Postage and Delivery (Business)
+Business Income:Other Income (Business)
+Credit Card Payment
+Education
+Entertainment
+Fees & Charges:ATM Fee
+Food & Dining
+Food & Dining:Fast Food
+Food & Dining:Groceries
+Food & Dining:Restaurants
+Francine
+fuel
+Gifts & Donations
+Health & Fitness
+Health & Fitness:Pharmacy
+Health & Fitness:Sports
+Home
+Home:Home Improvement
+Home:Home Insurance
+Home:Lawn & Garden
+Home:Mortgage & Rent
+Medical
+Medical Optomitrist
+Medical: Dental
+Medical: General
+Misc
+Personal Income
+Personal Income:Interest Earned
+Personal Income:Paycheck
+Pets
+Refund
+Sewer and Trash
+Shopping:Clothing
+telephone
+Transfer
+Uncategorized
+Van Fuel
+Water

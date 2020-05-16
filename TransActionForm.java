@@ -6,14 +6,20 @@
 package bankregister;
 
 //import java.awt.event.WindowEvent;
+import java.awt.List;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -23,21 +29,50 @@ public class TransActionForm extends javax.swing.JFrame {
 
     private BankAccount bankAccount;
     private ErrorMessages error;
+    private String[] categories;
 
     /**
      * Creates new form TransActionForm
      */
     public TransActionForm() {
+//        initComponents();
         error = new ErrorMessages();
-        initComponents();
+        
+       
         try {
-            readFile();
+            readCategoriesFile();
+            initComponents();
+            readAccountFile();
         } catch (FileNotFoundException ex) {
+            error.errorMessage("File not found error: " + ex.getMessage());
+            System.out.println(ex.getMessage());
+        } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
+       
     }// end constructor
+    
+    private void readCategoriesFile() throws FileNotFoundException, IOException{
+        FileReader fileReader = new FileReader("categories.txt");
+        BufferedReader bufferedReader = new BufferedReader(fileReader);
+        ArrayList<String> lines = new ArrayList<>();
+        String line = null;
+        while ((line = bufferedReader.readLine()) != null) {
+            lines.add(line);
+        }
+        bufferedReader.close();
+       categories =  lines.toArray(new String[lines.size()]);
+       
+        System.out.println(categories.length);
+        
+        
+        
+        
+        
+       
+    }// end readCategoriesFile
 
-    private void readFile() throws FileNotFoundException {
+    private void readAccountFile() throws FileNotFoundException {
 
         File accountFile = new File("accountInfo.txt");
         String[] split_data;
@@ -56,13 +91,12 @@ public class TransActionForm extends javax.swing.JFrame {
         String accountOwner = split_data[0].trim();
         String accountType = split_data[1].trim();
         float accountBala = Float.parseFloat(split_data[2].trim());
-        //int accountNum = Integer.parseInt(split_data[3].trim());
 
         bankAccount = new BankAccount(accountOwner, accountType, accountBala);
         balanceResultTxtFld.setText("$" + Float.toString(bankAccount.getBalance()));
         acctNameValueLbl.setText(bankAccount.getActype());
 
-    }// end readFile
+    }// end readAccountFile
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -72,7 +106,6 @@ public class TransActionForm extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
@@ -81,7 +114,6 @@ public class TransActionForm extends javax.swing.JFrame {
         dateLbl = new javax.swing.JLabel();
         categoryLbl = new javax.swing.JLabel();
         amntLbl = new javax.swing.JLabel();
-        catTxtFld = new javax.swing.JTextField();
         amtTxtFld = new javax.swing.JTextField();
         debitRdoBtn = new javax.swing.JRadioButton();
         depRdoBtn = new javax.swing.JRadioButton();
@@ -96,6 +128,7 @@ public class TransActionForm extends javax.swing.JFrame {
         checkNumLbl = new javax.swing.JLabel();
         checkNumTxtFld = new javax.swing.JTextField();
         datePicker = new org.jdesktop.swingx.JXDatePicker();
+        categorComboBox = new javax.swing.JComboBox<>(categories);
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -107,88 +140,24 @@ public class TransActionForm extends javax.swing.JFrame {
                 formWindowClosing(evt);
             }
         });
-        getContentPane().setLayout(new java.awt.GridBagLayout());
 
         titleLbl.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
         titleLbl.setText("Account Transaction Form");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 8;
-        gridBagConstraints.ipadx = 10;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(15, 68, 0, 0);
-        getContentPane().add(titleLbl, gridBagConstraints);
 
         dateLbl.setText("Date:");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(25, 99, 0, 0);
-        getContentPane().add(dateLbl, gridBagConstraints);
 
         categoryLbl.setText("Category:");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 9;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(11, 72, 0, 0);
-        getContentPane().add(categoryLbl, gridBagConstraints);
 
         amntLbl.setText("Amount:");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 11;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(11, 78, 0, 0);
-        getContentPane().add(amntLbl, gridBagConstraints);
-
-        catTxtFld.setText(" ");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 9;
-        gridBagConstraints.gridwidth = 15;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 259;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(6, 18, 0, 44);
-        getContentPane().add(catTxtFld, gridBagConstraints);
 
         amtTxtFld.setText(" ");
         amtTxtFld.setToolTipText("Transaction Amount $");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 11;
-        gridBagConstraints.gridwidth = 15;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 259;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(6, 18, 0, 44);
-        getContentPane().add(amtTxtFld, gridBagConstraints);
 
         transTypeBtnGroup.add(debitRdoBtn);
         debitRdoBtn.setText("(-)Debit");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(18, 68, 0, 0);
-        getContentPane().add(debitRdoBtn, gridBagConstraints);
 
         transTypeBtnGroup.add(depRdoBtn);
         depRdoBtn.setText("(+)Deposit");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(18, 0, 0, 0);
-        getContentPane().add(depRdoBtn, gridBagConstraints);
 
         addTransBtn.setText("Enter");
         addTransBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -196,13 +165,6 @@ public class TransActionForm extends javax.swing.JFrame {
                 addTransBtnActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 15;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(18, 49, 26, 0);
-        getContentPane().add(addTransBtn, gridBagConstraints);
 
         cancelBtn.setText("Exit");
         cancelBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -210,99 +172,136 @@ public class TransActionForm extends javax.swing.JFrame {
                 cancelBtnActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 7;
-        gridBagConstraints.gridy = 15;
-        gridBagConstraints.gridwidth = 9;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(18, 6, 26, 0);
-        getContentPane().add(cancelBtn, gridBagConstraints);
 
         balanceLbl.setText("Balance:");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 13;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(11, 81, 0, 0);
-        getContentPane().add(balanceLbl, gridBagConstraints);
 
         balanceResultTxtFld.setEditable(false);
         balanceResultTxtFld.setText(" ");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 13;
-        gridBagConstraints.gridwidth = 15;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 259;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(6, 18, 0, 44);
-        getContentPane().add(balanceResultTxtFld, gridBagConstraints);
 
         acctNameLbl.setText("Account Name:");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridwidth = 4;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(18, 74, 0, 0);
-        getContentPane().add(acctNameLbl, gridBagConstraints);
 
         acctNameValueLbl.setText("acct name");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(18, 12, 0, 0);
-        getContentPane().add(acctNameValueLbl, gridBagConstraints);
 
         payeeLbl.setText("Payee:");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 7;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(11, 84, 0, 0);
-        getContentPane().add(payeeLbl, gridBagConstraints);
 
         payeeTxtFld.setText(" ");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 7;
-        gridBagConstraints.gridwidth = 15;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 259;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(6, 18, 0, 44);
-        getContentPane().add(payeeTxtFld, gridBagConstraints);
 
         checkNumLbl.setText("Check #:");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 5;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(11, 77, 0, 0);
-        getContentPane().add(checkNumLbl, gridBagConstraints);
 
         checkNumTxtFld.setText(" ");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 5;
-        gridBagConstraints.gridwidth = 15;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 259;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(6, 18, 0, 44);
-        getContentPane().add(checkNumTxtFld, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.gridwidth = 15;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 116;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(20, 18, 0, 44);
-        getContentPane().add(datePicker, gridBagConstraints);
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(78, 78, 78)
+                        .addComponent(categoryLbl))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(74, 74, 74)
+                        .addComponent(titleLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(74, 74, 74)
+                        .addComponent(debitRdoBtn)
+                        .addGap(20, 20, 20)
+                        .addComponent(depRdoBtn))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(225, 225, 225)
+                        .addComponent(addTransBtn)
+                        .addGap(6, 6, 6)
+                        .addComponent(cancelBtn))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(84, 84, 84)
+                            .addComponent(amntLbl)
+                            .addGap(18, 18, 18)
+                            .addComponent(amtTxtFld, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(87, 87, 87)
+                                .addComponent(balanceLbl)
+                                .addGap(18, 18, 18)
+                                .addComponent(balanceResultTxtFld, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(83, 83, 83)
+                                    .addComponent(checkNumLbl)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(checkNumTxtFld, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(90, 90, 90)
+                                        .addComponent(payeeLbl)
+                                        .addGap(27, 27, 27)
+                                        .addComponent(payeeTxtFld, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addGap(156, 156, 156)
+                                        .addComponent(categorComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(80, 80, 80)
+                        .addComponent(acctNameLbl)
+                        .addGap(12, 12, 12)
+                        .addComponent(acctNameValueLbl))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(105, 105, 105)
+                        .addComponent(dateLbl)
+                        .addGap(18, 18, 18)
+                        .addComponent(datePicker, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(65, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(47, 47, 47)
+                .addComponent(titleLbl)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(debitRdoBtn)
+                    .addComponent(depRdoBtn))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(acctNameLbl)
+                    .addComponent(acctNameValueLbl))
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(dateLbl)
+                    .addComponent(datePicker, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(6, 6, 6)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(5, 5, 5)
+                        .addComponent(checkNumLbl))
+                    .addComponent(checkNumTxtFld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(6, 6, 6)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(5, 5, 5)
+                        .addComponent(payeeLbl))
+                    .addComponent(payeeTxtFld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(7, 7, 7)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(categoryLbl)
+                    .addComponent(categorComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(6, 6, 6)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(5, 5, 5)
+                        .addComponent(amntLbl))
+                    .addComponent(amtTxtFld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(6, 6, 6)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(5, 5, 5)
+                        .addComponent(balanceLbl))
+                    .addComponent(balanceResultTxtFld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(addTransBtn)
+                    .addComponent(cancelBtn))
+                .addContainerGap(9, Short.MAX_VALUE))
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -321,10 +320,10 @@ public class TransActionForm extends javax.swing.JFrame {
 
             if (debitRdoBtn.isSelected()) {
 
-                if (bankAccount.withdraw(transAmount, transDate, catTxtFld.getText(), payeeTxtFld.getText(), checkNumTxtFld.getText())) {
+                if (bankAccount.withdraw(transAmount, transDate, String.valueOf(categorComboBox.getSelectedItem()), payeeTxtFld.getText(), checkNumTxtFld.getText())) {
                     // clear fields
                     amtTxtFld.setText("");
-                    catTxtFld.setText("");
+                    
                     // dateTxtFld.setText("");
                     payeeTxtFld.setText("");
                     checkNumTxtFld.setText("");
@@ -338,10 +337,10 @@ public class TransActionForm extends javax.swing.JFrame {
 
             } else if (depRdoBtn.isSelected()) {
 
-                if (bankAccount.deposit(transAmount, transDate, catTxtFld.getText(), payeeTxtFld.getText(), checkNumTxtFld.getText())) {
+                if (bankAccount.deposit(transAmount, transDate, String.valueOf(categorComboBox.getSelectedItem()), payeeTxtFld.getText(), checkNumTxtFld.getText())) {
                     // clear the fields
                     amtTxtFld.setText("");
-                    catTxtFld.setText("");
+                   
                     // dateTxtFld.setText("");
                     payeeTxtFld.setText("");
                     checkNumTxtFld.setText("");
@@ -423,7 +422,7 @@ public class TransActionForm extends javax.swing.JFrame {
     private javax.swing.JLabel balanceLbl;
     private javax.swing.JTextField balanceResultTxtFld;
     private javax.swing.JButton cancelBtn;
-    private javax.swing.JTextField catTxtFld;
+    private javax.swing.JComboBox<String> categorComboBox;
     private javax.swing.JLabel categoryLbl;
     private javax.swing.JLabel checkNumLbl;
     private javax.swing.JTextField checkNumTxtFld;
