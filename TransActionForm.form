@@ -109,12 +109,12 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="javax.swing.JRadioButton" name="withDrwRdoBtn">
+    <Component class="javax.swing.JRadioButton" name="debitRdoBtn">
       <Properties>
         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
           <ComponentRef name="transTypeBtnGroup"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Withdraw"/>
+        <Property name="text" type="java.lang.String" value="(-)Debit"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -127,7 +127,7 @@
         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
           <ComponentRef name="transTypeBtnGroup"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Deposit"/>
+        <Property name="text" type="java.lang.String" value="(+)Deposit"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">

@@ -1,7 +1,7 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template transActionsFile, choose Tools | Templates
- * and open the template in the editor.
+ * File: BankAccount.java
+ * Created: 5/16/2020
+ * 
  */
 package bankregister;
 
@@ -13,7 +13,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 /**
- * This class will represent all the properties of a bank account.
+ * This class will represent all the properties and actions of a bank account.
  * @author Eduardo Estrada
  */
 public class BankAccount {
@@ -51,7 +51,7 @@ public class BankAccount {
             String transPayee, String transCheckNum) {
 
         if (amt < 0) {
-            error.displayAmountError();
+            error.errorMessage("Amount Error!");
             return false;
         } else {
             balance = balance + amt;
@@ -73,10 +73,10 @@ public class BankAccount {
     public boolean withdraw(float amt, String transDate, String transCategory,
             String transPayee, String transCheckNum) {
         if (balance < amt) {
-            error.displayInsufficientFunds();
+            error.errorMessage("Insufficient Funds!");
             return false;
         } else if (amt < 0) {
-            error.displayAmountError();
+            error.errorMessage("Amount Error!");
             return false;
         } else {
             balance = balance - amt;
@@ -95,8 +95,8 @@ public class BankAccount {
     public void recordTransActions() throws IOException {
 
         try (
-                // will overwrite the account info file with new balance
-                FileWriter accountInfoWriter = new FileWriter("accountInfo.txt")) {
+            // will overwrite the initial account info file with new balance
+            FileWriter accountInfoWriter = new FileWriter("accountInfo.txt")) {
             accountInfoWriter.write(name + "," + actype + "," + df.format(balance));
         }// end try
         File transActionsFile = new File("TransActions.txt");
@@ -113,10 +113,6 @@ public class BankAccount {
 
     }// end recordTransActions()
 
-    public String getName() {
-        return name;
-    }
-
     public String getActype() {
         return actype;
     }
@@ -127,10 +123,6 @@ public class BankAccount {
 
     public String getBalanceAsString() {
         return df.format(balance);
-    }
-
-    public ArrayList<String> getTransactions() {
-        return transactions;
     }
 
 }// end class BankAccount

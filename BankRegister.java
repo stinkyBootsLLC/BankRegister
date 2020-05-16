@@ -1,7 +1,7 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template accountFile, choose Tools | Templates
- * and open the template in the editor.
+ * File: BankRegister.java
+ * Created: 5/16/2020
+ * 
  */
 package bankregister;
 

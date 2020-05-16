@@ -1,7 +1,7 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * File: TransActionForm.java
+ * Created: 5/16/2020
+ * 
  */
 package bankregister;
 
@@ -22,12 +22,13 @@ import java.util.Scanner;
 public class TransActionForm extends javax.swing.JFrame {
 
     private BankAccount bankAccount;
-    private ErrorMessages error = new ErrorMessages();
+    private ErrorMessages error;
 
     /**
      * Creates new form TransActionForm
      */
     public TransActionForm() {
+        error = new ErrorMessages();
         initComponents();
         try {
             readFile();
@@ -82,7 +83,7 @@ public class TransActionForm extends javax.swing.JFrame {
         amntLbl = new javax.swing.JLabel();
         catTxtFld = new javax.swing.JTextField();
         amtTxtFld = new javax.swing.JTextField();
-        withDrwRdoBtn = new javax.swing.JRadioButton();
+        debitRdoBtn = new javax.swing.JRadioButton();
         depRdoBtn = new javax.swing.JRadioButton();
         addTransBtn = new javax.swing.JButton();
         cancelBtn = new javax.swing.JButton();
@@ -169,18 +170,18 @@ public class TransActionForm extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(6, 18, 0, 44);
         getContentPane().add(amtTxtFld, gridBagConstraints);
 
-        transTypeBtnGroup.add(withDrwRdoBtn);
-        withDrwRdoBtn.setText("Withdraw");
+        transTypeBtnGroup.add(debitRdoBtn);
+        debitRdoBtn.setText("(-)Debit");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.gridwidth = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(18, 68, 0, 0);
-        getContentPane().add(withDrwRdoBtn, gridBagConstraints);
+        getContentPane().add(debitRdoBtn, gridBagConstraints);
 
         transTypeBtnGroup.add(depRdoBtn);
-        depRdoBtn.setText("Deposit");
+        depRdoBtn.setText("(+)Deposit");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 1;
@@ -318,7 +319,7 @@ public class TransActionForm extends javax.swing.JFrame {
             String transDate = dateFormat.format(selectedDate);
             transAmount = Float.parseFloat(amtTxtFld.getText());
 
-            if (withDrwRdoBtn.isSelected()) {
+            if (debitRdoBtn.isSelected()) {
 
                 if (bankAccount.withdraw(transAmount, transDate, catTxtFld.getText(), payeeTxtFld.getText(), checkNumTxtFld.getText())) {
                     // clear fields
@@ -351,31 +352,26 @@ public class TransActionForm extends javax.swing.JFrame {
                 } // end if successful deposit
                 
             } else {
-                error.displaySelectTransActionType();
+                error.errorMessage("Select (-)debit or (+)deposit!");
             }// end if either radio button selected
             
         } catch (NumberFormatException numberFormatException) {
-            
-            error.displayBlankFieldError("Amount");
+            error.errorMessage("Amount Field cannot be blank!");
             System.out.println(numberFormatException.getMessage());
         } catch (NullPointerException nullException){
-            error.displayBlankFieldError("Date");
+            error.errorMessage("Date Field cannot be blank!");
             System.out.println(nullException.getMessage());
         
         }
     }//GEN-LAST:event_addTransBtnActionPerformed
 
     private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
-        // cancel button needs to close out this form
-        // System.exit(0);
         try {
             bankAccount.recordTransActions();
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
         dispose();
-        System.out.println("cancel button pressed");
-
     }//GEN-LAST:event_cancelBtnActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
@@ -384,11 +380,9 @@ public class TransActionForm extends javax.swing.JFrame {
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
-        System.out.println("window closing");
     }//GEN-LAST:event_formWindowClosing
-
     /**
-     *
+     * Starts a new runnable transaction form.
      */
     public static void displayForm() {
         /* Set the Nimbus look and feel */
@@ -415,12 +409,10 @@ public class TransActionForm extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new TransActionForm().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new TransActionForm().setVisible(true);
         });
-    }
+    }// end displayForm()
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel acctNameLbl;
@@ -437,6 +429,7 @@ public class TransActionForm extends javax.swing.JFrame {
     private javax.swing.JTextField checkNumTxtFld;
     private javax.swing.JLabel dateLbl;
     private org.jdesktop.swingx.JXDatePicker datePicker;
+    private javax.swing.JRadioButton debitRdoBtn;
     private javax.swing.JRadioButton depRdoBtn;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
@@ -444,6 +437,5 @@ public class TransActionForm extends javax.swing.JFrame {
     private javax.swing.JTextField payeeTxtFld;
     private javax.swing.JLabel titleLbl;
     private javax.swing.ButtonGroup transTypeBtnGroup;
-    private javax.swing.JRadioButton withDrwRdoBtn;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,7 +1,7 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * File: MainDisplay.java
+ * Created: 5/16/2020
+ * 
  */
 package bankregister;
 
@@ -81,20 +81,18 @@ public class MainDisplay extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void transFormBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transFormBtnActionPerformed
-        // TODO add your handling code here:
+    private void transFormBtnActionPerformed(java.awt.event.ActionEvent evt) {                                                
         TransActionForm.displayForm();
         System.out.println("transaction button pressed");
-    }//GEN-LAST:event_transFormBtnActionPerformed
+    }                                            
 
     private void exitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitBtnActionPerformed
-        // TODO add your handling code here:
         System.out.println("exit button press");
         System.exit(0);
     }//GEN-LAST:event_exitBtnActionPerformed
 
     /**
-     *  
+     * Display application main window.
      */
     public static void mainDisplay() {
         /* Set the Nimbus look and feel */
