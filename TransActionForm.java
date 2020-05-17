@@ -294,7 +294,7 @@ public class TransActionForm extends javax.swing.JFrame {
 
     private void addTransBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addTransBtnActionPerformed
 
-        String datePattern = "dd/MM/yyyy";
+        String datePattern = "MM/dd/yyyy";
         DateFormat dateFormat = new SimpleDateFormat(datePattern);
         float transAmount;
         
