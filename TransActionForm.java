@@ -4,9 +4,6 @@
  * 
  */
 package bankregister;
-
-//import java.awt.event.WindowEvent;
-import java.awt.List;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -18,8 +15,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -35,10 +30,7 @@ public class TransActionForm extends javax.swing.JFrame {
      * Creates new form TransActionForm
      */
     public TransActionForm() {
-//        initComponents();
         error = new ErrorMessages();
-        
-       
         try {
             readCategoriesFile();
             initComponents();
@@ -61,14 +53,7 @@ public class TransActionForm extends javax.swing.JFrame {
             lines.add(line);
         }
         bufferedReader.close();
-       categories =  lines.toArray(new String[lines.size()]);
-       
-        System.out.println(categories.length);
-        
-        
-        
-        
-        
+       	categories =  lines.toArray(new String[lines.size()]);
        
     }// end readCategoriesFile
 
@@ -134,7 +119,7 @@ public class TransActionForm extends javax.swing.JFrame {
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
@@ -376,6 +361,7 @@ public class TransActionForm extends javax.swing.JFrame {
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         try {
             bankAccount.recordTransActions();
+            dispose();
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
