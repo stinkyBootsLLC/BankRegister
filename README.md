@@ -48,10 +48,10 @@ To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
-* npm
+To compile and run this project on a local machine, you must include swingx-0.9.5-2.
+* swingx-0.9.5-2
   ```sh
-  npm install npm@latest -g
+  https://javadoc.io/doc/org.swinglabs/swingx/0.9.5-2/index.html
   ```
 
 ### Installation
