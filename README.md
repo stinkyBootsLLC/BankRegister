@@ -1,6 +1,5 @@
-# BankRegister
+# My BankRegister Java App
 
-<br />
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
@@ -31,6 +30,8 @@ The file categories.txt, will contain all the categories for the field "Catagory
 
 This is an example of how you may give instructions on setting up your project locally.
 To get a local copy up and running follow these simple example steps.
+
+[App User Guide](https://github.com/stinkyBootsLLC/BankRegister/blob/master/HowToGuide.pdf)
 
 ### Prerequisites
 
