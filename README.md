@@ -28,10 +28,7 @@ The file categories.txt, will contain all the categories for the field "Catagory
 <!-- GETTING STARTED -->
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
-
-[App User Guide](https://github.com/stinkyBootsLLC/BankRegister/blob/master/HowToGuide.pdf)
+Download the final [product](https://github.com/stinkyBootsLLC/BankRegister/tree/master/Product) and take a look at the [App User Guide](https://github.com/stinkyBootsLLC/BankRegister/blob/master/HowToGuide.pdf)
 
 ### Prerequisites
 
@@ -51,14 +48,14 @@ To compile and run this project on a local machine, you must include swingx-0.9.
 
 
 
-<!-- USAGE EXAMPLES -->
+<!-- USAGE EXAMPLES 
 ## Usage
 
 Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
 
 _For more examples, please refer to the [Documentation](https://example.com)_
 
-
+-->
 
 <!-- ROADMAP -->
 ## Roadmap
