@@ -20,8 +20,6 @@ Food & Dining
 Food & Dining:Fast Food
 Food & Dining:Groceries
 Food & Dining:Restaurants
-Francine
-fuel
 Gifts & Donations
 Health & Fitness
 Health & Fitness:Pharmacy
@@ -31,20 +29,22 @@ Home:Home Improvement
 Home:Home Insurance
 Home:Lawn & Garden
 Home:Mortgage & Rent
+Home:Personal Property Insurance
+Interest
 Medical
-Medical Optomitrist
 Medical: Dental
 Medical: General
+Medical: Optometrist
 Misc
 Personal Income
 Personal Income:Interest Earned
 Personal Income:Paycheck
 Pets
 Refund
+Retirement Contribution
 Sewer and Trash
 Shopping:Clothing
-telephone
+Tax-Relief
+Telephone
 Transfer
-Uncategorized
-Van Fuel
 Water
