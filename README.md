@@ -2,7 +2,7 @@
 
 
 <!-- ABOUT THE PROJECT -->
-## About The Project
+## About the Project
 
 Bank register Java GUI application. Record debit and deposit transactions for one bank account. This application is a very simple GUI bank register that will record all transactions to a text file.
 
