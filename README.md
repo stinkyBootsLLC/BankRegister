@@ -21,7 +21,7 @@ The file categories.txt, will contain all the categories for the field "Catagory
 ### Built With
 
 
-* [NetBeans](https://netbeans.apache.org/)8.2
+* [NetBeans](https://netbeans.apache.org/) 8.2
 
 
 
