@@ -21,7 +21,7 @@ The file categories.txt, will contain all the categories for the field "Catagory
 ### Built With
 
 
-* [netBeans](https://netbeans.apache.org/)
+* [NetBeans](https://netbeans.apache.org/)
 
 
 
@@ -44,8 +44,6 @@ To compile and run this project on a local machine, you must include swingx-0.9.
    ```sh
    git clone https://github.com/stinkyBootsLLC/BankRegister.git
    ```
-
-
 
 
 <!-- USAGE EXAMPLES 
