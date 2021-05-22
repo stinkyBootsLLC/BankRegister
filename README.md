@@ -64,7 +64,7 @@ List of proposed features (and known issues).
 <!-- LICENSE -->
 ## License
 
-Distributed under the MIT License. See [`LICENSE`](https://www.mit.edu/~amini/LICENSE.md) for more information.
+Distributed under the MIT License. See [`LICENSE`](https://github.com/stinkyBootsLLC/BankRegister/blob/master/license.md) for more information.
 
 
 
